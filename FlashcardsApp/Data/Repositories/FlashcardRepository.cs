@@ -30,7 +30,17 @@ namespace FlashcardsApp.Data.Repositories
             return await con.QueryAsync<Flashcard>(sql);
         }
 
-        public async void AddAsync(Flashcard flashcard)
+        public async Task<IEnumerable<Flashcard>> GetByDeckIdAsync(int deckId)
+        {
+            string sql =
+                """
+                SELECT * FROM Flashcards
+                WHERE DeckId = @DeckId;
+                """;
+            using var con = DataAccess.GetConnection(_connectionString);
+            return await con.QueryAsync<Flashcard>(sql, new { DeckId = deckId });
+        }
+        public async Task<int> AddAsync(Flashcard flashcard)
         {
             string sql =
                 """
@@ -38,10 +48,10 @@ namespace FlashcardsApp.Data.Repositories
                 VALUES (@DeckId, @Question, @Answer);
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, flashcard);
+            return await con.ExecuteAsync(sql, flashcard);
         }
 
-        public async void DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             string sql =
                 """
@@ -49,10 +59,10 @@ namespace FlashcardsApp.Data.Repositories
                 WHERE Id = @Id;
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, new { Id = id });
+            return await con.ExecuteAsync(sql, new { Id = id });
         }
 
-        public async void UpdateAsync(Flashcard flashcard)
+        public async Task<int> UpdateAsync(Flashcard flashcard)
         {
             string sql =
                 """
@@ -64,8 +74,8 @@ namespace FlashcardsApp.Data.Repositories
                 WHERE Id = @Id
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, flashcard);
+            return await con.ExecuteAsync(sql, flashcard);
         }
-        
+
     }
 }

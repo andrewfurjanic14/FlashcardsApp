@@ -1,13 +1,19 @@
-﻿using System.Reflection;
+﻿using FlashcardsApp.Views;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace FlashcardsApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var editUI = new EditUI(configuration);
 
+            await editUI.RunAsync();
         }
     }
 }

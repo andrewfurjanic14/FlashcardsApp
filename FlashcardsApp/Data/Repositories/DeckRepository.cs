@@ -20,7 +20,7 @@ namespace FlashcardsApp.Data.Repositories
                     "DefaultConnection not found");
         }
 
-        public async void AddAsync(Deck deck)
+        public async Task<int> AddAsync(Deck deck)
         {
             string sql =
                 """
@@ -28,10 +28,10 @@ namespace FlashcardsApp.Data.Repositories
                 VALUES (@Name);
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, deck);
+            return await con.ExecuteAsync(sql, deck);
         }
 
-        public async void DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             string sql =
                 """
@@ -39,7 +39,7 @@ namespace FlashcardsApp.Data.Repositories
                 WHERE Id = @Id;
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, new { Id = id });
+            return await con.ExecuteAsync(sql, new { Id = id });
         }
 
         public async Task<IEnumerable<Deck>> GetAllAsync()
@@ -52,7 +52,7 @@ namespace FlashcardsApp.Data.Repositories
             return await con.QueryAsync<Deck>(sql);
         }
 
-        public async void UpdateAsync(Deck deck)
+        public async Task<int> UpdateAsync(Deck deck)
         {
             string sql =
                 """
@@ -60,7 +60,7 @@ namespace FlashcardsApp.Data.Repositories
                 SET Name = @Name;
                 """;
             using var con = DataAccess.GetConnection(_connectionString);
-            await con.ExecuteAsync(sql, deck);
+            return await con.ExecuteAsync(sql, deck);
         }
     }
 }

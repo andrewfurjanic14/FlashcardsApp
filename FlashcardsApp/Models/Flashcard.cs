@@ -11,5 +11,10 @@ namespace FlashcardsApp.Models
         public int DeckId { get; set; }
         public required string Question { get; set; }
         public required string Answer { get; set; }
+
+        public override string ToString()
+        {
+            return $"Deck: {DeckId}\n\tQuestion: {Question}\n\tAnswer: {Answer}";
+        }
     }
 }

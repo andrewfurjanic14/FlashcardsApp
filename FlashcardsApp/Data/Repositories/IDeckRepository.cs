@@ -8,8 +8,8 @@ namespace FlashcardsApp.Data.Repositories
     internal interface IDeckRepository
     {
         Task<IEnumerable<Deck>> GetAllAsync();
-        void AddAsync(Deck deck);
-        void DeleteAsync(int id);
-        void UpdateAsync(Deck deck);
+        Task<int> AddAsync(Deck deck);
+        Task<int> DeleteAsync(int id);
+        Task<int> UpdateAsync(Deck deck);
     }
 }
