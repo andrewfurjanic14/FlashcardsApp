@@ -22,6 +22,12 @@ namespace FlashcardsApp.Views.Utility
                 new() { Id = UIOptionKeyword.DeleteDeck, Label = "[yellow]DELETE[/] this deck"},
                 new() { Id = UIOptionKeyword.Exit, Label = "[yellow]EXIT[/]" }
             };
+        internal static readonly UserOption[] Study_MenuOptions =
+            {
+                new() { Id = UIOptionKeyword.Add, Label = "[yellow]BEGIN NEW[/] study session" },
+                new() { Id = UIOptionKeyword.View, Label = "[yellow]VIEW[/] study sessions" },
+                new() { Id = UIOptionKeyword.Exit, Label = "[yellow]EXIT[/]" }
+            };
 
         internal static string RequestString(string instructions, int charLimit, string? defaultValue = null)
         {

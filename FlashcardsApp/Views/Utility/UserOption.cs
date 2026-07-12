@@ -10,6 +10,7 @@ namespace FlashcardsApp.Views.Utility
         Edit,
         DeleteCard,
         DeleteDeck,
+        View,
         Exit
     }
     internal class UserOption

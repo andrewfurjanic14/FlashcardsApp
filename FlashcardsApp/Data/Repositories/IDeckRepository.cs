@@ -11,5 +11,6 @@ namespace FlashcardsApp.Data.Repositories
         Task<int> AddAsync(Deck deck);
         Task<int> DeleteAsync(int id);
         Task<int> UpdateAsync(Deck deck);
+        Task<string> GetNameAsync(int id);
     }
 }

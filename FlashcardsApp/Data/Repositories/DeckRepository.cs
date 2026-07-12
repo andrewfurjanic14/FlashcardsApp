@@ -52,6 +52,18 @@ namespace FlashcardsApp.Data.Repositories
             return await con.QueryAsync<Deck>(sql);
         }
 
+        public async Task<string> GetNameAsync(int id)
+        {
+            string sql =
+                """
+                SELECT Name FROM Decks
+                WHERE Id = @Id
+                """;
+            using var con = DataAccess.GetConnection(_connectionString);
+            var raw = await con.QueryAsync<string>(sql, new { Id = id });
+            return raw.First();
+        }
+
         public async Task<int> UpdateAsync(Deck deck)
         {
             string sql =
