@@ -2,6 +2,7 @@
 Split into two sides: 
   1. Deck Management
   2. Study
+     
 Deck Management is where the user can edit their decks by adding/updating/deleting flashcards, and adding new named decks.
 Study is where the user can flip through the decks and check the answers of cards when they're ready and mark whether they got it right or wrong.
 
